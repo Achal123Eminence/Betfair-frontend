@@ -1,0 +1,20 @@
+thead tr th{
+    background-color: #006e76 !important;
+    color: #fff;
+}
+
+.events-btn{
+    background-color: #006e76;
+    color: #fff;
+    border: 1px solid #0aadb8;
+    border-radius: 15px;
+    padding: 5px 10px;
+}
+
+.main-heading{
+    font-size: 1.6rem;
+    color: #006e76;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+}
