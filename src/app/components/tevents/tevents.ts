@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-cevent',
+  selector: 'app-tevents',
   imports: [RouterModule],
-  templateUrl: './cevent.html',
-  styleUrl: './cevent.css'
+  templateUrl: './tevents.html',
+  styleUrl: './tevents.css'
 })
-export class CEvent {
+export class TEvents {
 
 }
