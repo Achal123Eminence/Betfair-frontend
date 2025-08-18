@@ -46,9 +46,9 @@
     </table>
 </div>
 
-<!-- Market Data Model -->
+<!-- Market Data Modal -->
 <div class="modal fade" id="marketDataModal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
+  <div class="modal-dialog modal-lg modal-top">
     <div class="modal-content" style="background: #006e76; color: white;">
       <div class="modal-header border-0" style="border-bottom: 1px solid #144b4f !important;">
         <h5 class="modal-title" style="font-size: 1rem;">Market Data</h5>
@@ -56,8 +56,13 @@
       </div>
 
       <div class="modal-body" style="background-color: #fff; color: #000;">
-        <p>Hello here the data of Cricket Will be there</p>
+        <!-- JSON Display -->
+        <pre style="background:#f8f9fa; color:#212529; padding:10px; border-radius:8px; max-height:300px; overflow:auto; font-size:0.9rem;">{{ marketData | json }}</pre>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button class="btn btn-light" (click)="copyJson()"><i class="fa fa-clipboard"></i> Copy JSON</button>
       </div>
     </div>
   </div>
-</div> 
+</div>
