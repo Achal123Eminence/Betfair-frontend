@@ -17,3 +17,7 @@ thead tr th{
     font-weight: 700;
     margin-bottom: 1rem;
 }
+
+label, .entries-num{
+    color: #fff;
+}

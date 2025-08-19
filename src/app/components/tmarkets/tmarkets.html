@@ -1,67 +1,147 @@
 <div class="cricket-container">
-    <h1 class="main-heading">Tennis Markets</h1>
-    <table class="table table-striped" style="box-shadow: #000 0 2px 6px;">
-        <thead>
-            <tr>
-                <th scope="col">Sr.No</th>
-                <th scope="col">Event Id / Event Name</th>
-                <th scope="col">Market Id</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>1.246759656</td>
-                <td>
-                    <button class="events-btn" (click)="openMarketDataModal(1)">Match Odds</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>1.246759656</td>
-                <td>
-                    <button class="events-btn" (click)="openMarketDataModal(2)">Match Odds</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>1.246759656</td>
-                <td>
-                    <button class="events-btn" (click)="openMarketDataModal(3)">Match Odds</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>1.246759656</td>
-                <td>
-                    <button class="events-btn" (click)="openMarketDataModal(4)">Match Odds</button>
-                </td>
-            </tr>
-        </tbody>
+  <h1 class="main-heading">Tennis Markets</h1>
+
+  <!-- Search & Page Size -->
+  <div class="table-responsive" style="box-shadow: #000 0 2px 6px">
+    <div
+      class="d-flex justify-content-between align-items-center p-2" style="background-color: #006e76;border-bottom: 1px solid #fff;"
+    >
+      <div>
+        <label class="me-2">Show</label>
+        <select class="form-select d-inline-block w-auto">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        <label class="ms-2">entries</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          style="max-width: 250px"
+        />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Sr.No</th>
+          <th scope="col">Event Id / Event Name</th>
+          <th scope="col">Market Id</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>1.246759656</td>
+          <td>
+            <button class="events-btn" (click)="openMarketDataModal(1)">
+              Match Odds
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>1.246759656</td>
+          <td>
+            <button class="events-btn" (click)="openMarketDataModal(2)">
+              Match Odds
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>1.246759656</td>
+          <td>
+            <button class="events-btn" (click)="openMarketDataModal(3)">
+              Match Odds
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>1.246759656</td>
+          <td>
+            <button class="events-btn" (click)="openMarketDataModal(4)">
+              Match Odds
+            </button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div
+      class="d-flex justify-content-between align-items-center p-2" style="background-color: #006e76;"
+    >
+      <div class="entries-num">
+        Showing <strong>1</strong> to <strong>4</strong> of
+        <strong>10</strong> entries
+      </div>
+      <nav>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link">1</a>
+          </li>
+          <li class="page-item"><a class="page-link">2</a></li>
+          <li class="page-item"><a class="page-link">3</a></li>
+          <li class="page-item"><a class="page-link">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
 
 <!-- Market Data Modal -->
 <div class="modal fade" id="marketDataModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-top">
-    <div class="modal-content" style="background: #006e76; color: white;">
-      <div class="modal-header border-0" style="border-bottom: 1px solid #144b4f !important;">
-        <h5 class="modal-title" style="font-size: 1rem;">Market Data</h5>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+    <div class="modal-content" style="background: #006e76; color: white">
+      <div
+        class="modal-header border-0"
+        style="border-bottom: 1px solid #144b4f !important"
+      >
+        <h5 class="modal-title" style="font-size: 1rem">Market Data</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="modal"
+        ></button>
       </div>
 
-      <div class="modal-body" style="background-color: #fff; color: #000;">
+      <div class="modal-body" style="background-color: #fff; color: #000">
         <!-- JSON Display -->
-        <pre style="background:#f8f9fa; color:#212529; padding:10px; border-radius:8px; max-height:300px; overflow:auto; font-size:0.9rem;">{{ marketData | json }}</pre>
+        <pre
+          style="
+            background: #f8f9fa;
+            color: #212529;
+            padding: 10px;
+            border-radius: 8px;
+            max-height: 300px;
+            overflow: auto;
+            font-size: 0.9rem;
+          "
+        >
+{{ marketData | json }}</pre
+        >
       </div>
 
       <div class="modal-footer border-0">
-        <button class="btn btn-light" (click)="copyJson()"><i class="fa fa-clipboard"></i> Copy JSON</button>
+        <button class="btn btn-light" (click)="copyJson()">
+          <i class="fa fa-clipboard"></i> Copy JSON
+        </button>
       </div>
     </div>
   </div>

@@ -1,67 +1,119 @@
 <div class="cricket-container">
-    <h1 class="main-heading">Cricket Events</h1>
-    <table class="table table-striped" style="box-shadow: #000 0 2px 6px;">
-        <thead>
-            <tr>
-                <th scope="col">Sr.No</th>
-                <th scope="col">EventId/MarketID</th>
-                <th scope="col">Event Name</th>
-                <th scope="col">Cmpt Id/Name</th>
-                <th scope="col">Open Date</th>
-                <th scope="col">Sport Name</th>
-                <th scope="col">Market Count</th>
-                <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>34632330 / 1.246759652</td>
-                <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>12670839/Andhra Premier League</td>
-                <td>2025-08-18 13:30:00</td>
-                <td>Cricket</td>
-                <td>5</td>
-                <td>
-                    <button class="events-btn" routerLink="/c-market">Markets</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>34632330 / 1.246759652</td>
-                <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>12670839/Andhra Premier League</td>
-                <td>2025-08-18 13:30:00</td>
-                <td>Cricket</td>
-                <td>5</td>
-                <td>
-                    <button class="events-btn" routerLink="/c-market">Markets</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>34632330 / 1.246759652</td>
-                <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>12670839/Andhra Premier League</td>
-                <td>2025-08-18 13:30:00</td>
-                <td>Cricket</td>
-                <td>5</td>
-                <td>
-                    <button class="events-btn" routerLink="/c-market">Markets</button>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">4</th>
-                <td>34632330 / 1.246759652</td>
-                <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                <td>12670839/Andhra Premier League</td>
-                <td>2025-08-18 13:30:00</td>
-                <td>Cricket</td>
-                <td>5</td>
-                <td>
-                    <button class="events-btn" routerLink="/c-market">Markets</button>
-                </td>
-            </tr>
-        </tbody>
+  <h1 class="main-heading">Cricket Events</h1>
+
+  <!-- Search & Page Size -->
+  <div class="table-responsive" style="box-shadow: #000 0 2px 6px;">
+    <div class="d-flex justify-content-between align-items-center p-2" style="background-color: #006e76;border-bottom: 1px solid #fff;">
+      <div>
+        <label class="me-2">Show</label>
+        <select class="form-select d-inline-block w-auto">
+          <option value="5">5</option>
+          <option value="10" selected>10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+        </select>
+        <label class="ms-2">entries</label>
+      </div>
+      <div>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          style="max-width: 250px;"
+        />
+      </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-striped mb-0">
+      <thead>
+        <tr>
+          <th scope="col">Sr.No</th>
+          <th scope="col">EventId/MarketID</th>
+          <th scope="col">Event Name</th>
+          <th scope="col">Cmpt Id/Name</th>
+          <th scope="col">Open Date</th>
+          <th scope="col">Sport Name</th>
+          <th scope="col">Market Count</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>34632330 / 1.246759652</td>
+          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>12670839 / Andhra Premier League</td>
+          <td>2025-08-18 13:30:00</td>
+          <td>Cricket</td>
+          <td>5</td>
+          <td>
+            <button class="events-btn" routerLink="/c-market">Markets</button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>34632330 / 1.246759652</td>
+          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>12670839 / Andhra Premier League</td>
+          <td>2025-08-18 13:30:00</td>
+          <td>Cricket</td>
+          <td>5</td>
+          <td>
+            <button class="events-btn" routerLink="/c-market">Markets</button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>34632330 / 1.246759652</td>
+          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>12670839 / Andhra Premier League</td>
+          <td>2025-08-18 13:30:00</td>
+          <td>Cricket</td>
+          <td>5</td>
+          <td>
+            <button class="events-btn" routerLink="/c-market">Markets</button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>34632330 / 1.246759652</td>
+          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
+          <td>12670839 / Andhra Premier League</td>
+          <td>2025-08-18 13:30:00</td>
+          <td>Cricket</td>
+          <td>5</td>
+          <td>
+            <button class="events-btn" routerLink="/c-market">Markets</button>
+          </td>
+        </tr>
+      </tbody>
     </table>
+
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center p-2" style="background-color: #006e76;">
+      <div class="entries-num">
+        Showing <strong>1</strong> to <strong>4</strong> of <strong>10</strong> entries
+      </div>
+      <nav>
+        <ul class="pagination pagination-sm mb-0">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">3</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
 </div>
