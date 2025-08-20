@@ -38,7 +38,7 @@
           (click)="togglePasswordVisibility()"
           [attr.aria-label]="passwordVisible ? 'Hide password' : 'Show password'"
         >
-          {{ passwordVisible ? '🙈' : '👁️' }}
+          {{ passwordVisible ? '🔓' : '🔒' }}
         </button>
       </div>
       @if (loginForm.get('password')?.touched && loginForm.get('password')?.invalid) {

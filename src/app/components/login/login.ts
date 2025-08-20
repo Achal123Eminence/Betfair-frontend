@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Api } from '../../core/service/api';
+import { User } from '../../core/service/user';
 
 
 @Component({
@@ -15,7 +17,7 @@ export class Login implements OnInit{
   errorMessage: string = '';
   passwordVisible: boolean = false;
   
-  constructor(private fb: FormBuilder,private router: Router) {}
+  constructor(private fb: FormBuilder,private router: Router, private apiService:Api, private UserService: User) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -26,17 +28,17 @@ export class Login implements OnInit{
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log(this.loginForm.value,"this.loginForm.value");
-      // this.apiService.login(this.loginForm.value).subscribe({
-      //   next: (res: any) => {
-      //     const token = res.token;
-      //     this.UserService.setToken(token);
-      //     this.router.navigate(['/home'])
-      //   },
-      //   error: (err: any) => {
-      //     this.errorMessage = err.error.message || 'Login failed';
-      //   }
-      // });
+      this.apiService.login(this.loginForm.value).subscribe({
+        next: (res: any) => {
+          console.log(res,"res")
+          const token = res.token;
+          this.UserService.setToken(token);
+          this.router.navigate(['/cricket'])
+        },
+        error: (err: any) => {
+          this.errorMessage = err.error.message || 'Login failed';
+        }
+      });
     }
   }
   

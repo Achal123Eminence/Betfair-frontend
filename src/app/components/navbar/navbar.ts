@@ -1,6 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Api } from '../../core/service/api';
+import { User } from '../../core/service/user';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +12,11 @@ import { CommonModule } from '@angular/common';
 })
 export class Navbar {
   private router = inject(Router);
+  private apiService = inject(Api); 
+  private userService = inject(User);
 
   logout(): void{
-    this.router.navigate(['/login']);
+    this.userService.logout()
   }
 
   isCricketActive(): boolean {
