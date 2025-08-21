@@ -42,9 +42,9 @@
         @for (item of cricketEventList(); track $index) {
           <tr>
             <th scope="row">{{$index + 1}}</th>
-            <td>{{item.event.id}} / _ _ _</td>
+            <td>{{item.event.id}}/{{item.marketId}}</td>
             <td>{{item.event.name}}</td>
-            <td>{{item.competitionId}} / _ _ _</td>
+            <td>{{item.competitionId}}/{{item.competitionName}}</td>
             <td>{{item.event.openDate}}</td>
             <td>Cricket</td>
             <td>{{item.marketCount}}</td>

@@ -20,33 +20,26 @@ export class Navbar {
   }
 
   isCricketActive(): boolean {
-  return this.router.url.startsWith('/cricket')
-      || this.router.url.startsWith('/c-event')
-      || this.router.url.startsWith('/c-market');
-}
+    return ['/cricket', '/c-event', '/c-market'].includes(this.router.url);
+  }
 
-isSoccerActive(): boolean {
-  return this.router.url.startsWith('/soccer')
-      || this.router.url.startsWith('/s-event')
-      || this.router.url.startsWith('/s-market');
-}
+  isSoccerActive(): boolean {
+    return ['/soccer', '/s-event', '/s-market'].includes(this.router.url);
+  }
 
-isTennisActive(): boolean {
-  return this.router.url.startsWith('/tennis')
-      || this.router.url.startsWith('/t-event')
-      || this.router.url.startsWith('/t-market');
-}
+  isTennisActive(): boolean {
+    return ['/tennis', '/t-event', '/t-market'].includes(this.router.url);
+  }
 
-isListCricketActive(): boolean {
-  return this.router.url.startsWith('/cricket-events');
-}
+  isListCricketActive(): boolean {
+    return ['/cricket-events'].includes(this.router.url);
+  }
 
-isListSoccerActive(): boolean {
-  return this.router.url.startsWith('/soccer-events');
-}
+  isListSoccerActive(): boolean {
+    return ['/soccer-events'].includes(this.router.url);
+  }
 
-isListTennisActive(): boolean {
-  return this.router.url.startsWith('/tennis-events');
-}
-
+  isListTennisActive(): boolean {
+    return ['/tennis-events'].includes(this.router.url);
+  }
 }

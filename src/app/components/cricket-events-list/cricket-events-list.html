@@ -39,54 +39,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>34632330 / 1.246759652</td>
-          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>12670839 / Andhra Premier League</td>
-          <td>2025-08-18 13:30:00</td>
-          <td>Cricket</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/c-market">Markets</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>34632330 / 1.246759652</td>
-          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>12670839 / Andhra Premier League</td>
-          <td>2025-08-18 13:30:00</td>
-          <td>Cricket</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/c-market">Markets</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>34632330 / 1.246759652</td>
-          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>12670839 / Andhra Premier League</td>
-          <td>2025-08-18 13:30:00</td>
-          <td>Cricket</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/c-market">Markets</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>34632330 / 1.246759652</td>
-          <td>Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>12670839 / Andhra Premier League</td>
-          <td>2025-08-18 13:30:00</td>
-          <td>Cricket</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/c-market">Markets</button>
-          </td>
-        </tr>
+        @for (item of cricketAllEventList(); track $index) {
+          <tr>
+            <th scope="row">{{$index + 1}}</th>
+            <td>{{item.eventId}}/{{item.marketId}}</td>
+            <td>{{item.eventName}}</td>
+            <td> {{item.competitionId}}/{{item.competitionName}}</td>
+            <td>{{item.openDate}}</td>
+            <td>{{item.sportName}}</td>
+            <td>{{item.marketCount}}</td>
+            <td>
+              <button class="events-btn" routerLink="/c-market/{{item.eventId}}">Markets</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
 
@@ -116,4 +82,8 @@
       </nav>
     </div>
   </div>
+</div>
+
+<div class="loader-overlay" *ngIf="isloading">
+  <div class="spinner"></div>
 </div>
