@@ -39,42 +39,20 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>12670839</td>
-          <td>Andhra Premier League</td>
-          <td>IND</td>
-          <td>Cricket</td>
-          <td>1</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/t-event">Events</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>12670839</td>
-          <td>Andhra Premier League</td>
-          <td>IND</td>
-          <td>Cricket</td>
-          <td>1</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/t-event">Events</button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>12670839</td>
-          <td>Andhra Premier League</td>
-          <td>IND</td>
-          <td>Cricket</td>
-          <td>1</td>
-          <td>5</td>
-          <td>
-            <button class="events-btn" routerLink="/t-event">Events</button>
-          </td>
-        </tr>
+        @for (item of tennisCompetitionList(); track $index) { 
+          <tr>
+            <th scope="row">{{$index + 1}}</th>
+            <td>{{item.competition.id}}</td>
+            <td>{{item.competition.name}}</td>
+            <td>{{item.competitionRegion}}</td>
+            <td>Tennis</td>
+            <td>{{item.eventCount}}</td>
+            <td>{{item.marketCount}}</td>
+            <td>
+              <button class="events-btn" routerLink="/t-event/{{item.competition.id}}">Events</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
 
@@ -104,4 +82,8 @@
       </nav>
     </div>
   </div>
+</div>
+
+<div class="loader-overlay" *ngIf="isloading">
+  <div class="spinner"></div>
 </div>

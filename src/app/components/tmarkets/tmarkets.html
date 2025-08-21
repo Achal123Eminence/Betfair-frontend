@@ -37,46 +37,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>1.246759656</td>
-          <td>
-            <button class="events-btn" (click)="openMarketDataModal(1)">
-              Match Odds
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>1.246759656</td>
-          <td>
-            <button class="events-btn" (click)="openMarketDataModal(2)">
-              Match Odds
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>1.246759656</td>
-          <td>
-            <button class="events-btn" (click)="openMarketDataModal(3)">
-              Match Odds
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-          <td>1.246759656</td>
-          <td>
-            <button class="events-btn" (click)="openMarketDataModal(4)">
-              Match Odds
-            </button>
-          </td>
-        </tr>
+        @for (item of tennisMarketList(); track $index) {
+          <tr>
+            <th scope="row"> {{$index + 1}} </th>
+            <td>{{item.event.id}} / {{item.event.name}}</td>
+            <td>{{item.marketId}}</td>
+            <td>
+              <button class="events-btn" (click)="openMarketDataModal(item.marketId)">
+                {{item.marketName}}
+              </button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
 
@@ -134,7 +106,7 @@
             font-size: 0.9rem;
           "
         >
-{{ marketData | json }}</pre
+{{ tennisMarketBookList() | json }}</pre
         >
       </div>
 
@@ -145,4 +117,8 @@
       </div>
     </div>
   </div>
+</div>
+
+<div class="loader-overlay" *ngIf="isloading">
+  <div class="spinner"></div>
 </div>

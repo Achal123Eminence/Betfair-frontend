@@ -31,46 +31,16 @@
                 </tr>
             </thead>
             <tbody>
+                @for (item of soccerMarketList(); track $index) {
                 <tr>
-                    <th scope="row">1</th>
-                    <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                    <td>1.246759656</td>
+                    <th scope="row"> {{$index + 1}} </th>
+                    <td>{{item.event.id}} / {{item.event.name}} </td>
+                    <td>{{item.marketId}}</td>
                     <td>
-                        <button class="events-btn" (click)="openMarketDataModal(1)">
-                            Match Odds
-                        </button>
+                        <button class="events-btn" (click)="openMarketDataModal(item.marketId)">{{item.marketName}}</button>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                    <td>1.246759656</td>
-                    <td>
-                        <button class="events-btn" (click)="openMarketDataModal(2)">
-                            Match Odds
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                    <td>1.246759656</td>
-                    <td>
-                        <button class="events-btn" (click)="openMarketDataModal(3)">
-                            Match Odds
-                        </button>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">4</th>
-                    <td>34632330 / Tungabhadra Warriors v Vijayawada Sunshiners</td>
-                    <td>1.246759656</td>
-                    <td>
-                        <button class="events-btn" (click)="openMarketDataModal(4)">
-                            Match Odds
-                        </button>
-                    </td>
-                </tr>
+                }
             </tbody>
         </table>
 
@@ -122,7 +92,7 @@
             max-height: 300px;
             overflow: auto;
             font-size: 0.9rem;
-          ">{{ marketData | json }}</pre>
+          ">{{ soccerMarketBookList() | json }}</pre>
             </div>
 
             <div class="modal-footer border-0">
@@ -132,4 +102,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="loader-overlay" *ngIf="isloading">
+  <div class="spinner"></div>
 </div>
