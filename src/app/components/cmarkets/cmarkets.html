@@ -7,7 +7,7 @@
       style="background-color: #006e76;border-bottom: 1px solid #fff;">
       <div>
         <label class="me-2">Show</label>
-        <select class="form-select d-inline-block w-auto">
+        <select class="form-select d-inline-block w-auto" (change)="setPageSize($event)">
           <option value="5">5</option>
           <option value="10" selected>10</option>
           <option value="25">25</option>
@@ -16,7 +16,8 @@
         <label class="ms-2">entries</label>
       </div>
       <div>
-        <input type="text" class="form-control" placeholder="Search..." style="max-width: 250px;" />
+        <input type="text" class="form-control" placeholder="Search..." style="max-width: 250px;" [value]="searchTerm()"
+          (input)="onSearchChange($event)" />
       </div>
     </div>
 
@@ -31,9 +32,9 @@
         </tr>
       </thead>
       <tbody>
-        @for (item of cricketMarketList(); track $index) {
+        @for (item of paginatedList(); track $index) {
         <tr>
-          <th scope="row"> {{$index + 1}} </th>
+          <th scope="row">{{ ($index + 1) + ((currentPage()-1) * pageSize()) }}</th>
           <td>{{item.event.id}} / {{item.event.name}} </td>
           <td>{{item.marketId}}</td>
           <td>
@@ -47,24 +48,20 @@
     <!-- Pagination -->
     <div class="d-flex justify-content-between align-items-center p-2" style="background-color: #006e76;">
       <div class="entries-num">
-        Showing <strong>1</strong> to <strong>4</strong> of <strong>10</strong> entries
+        Showing <strong>{{ (currentPage()-1) * pageSize() + 1 }}</strong> to <strong>{{ Math.min(currentPage() * pageSize(), filteredList().length) }}</strong> of <strong>{{ filteredList().length }}</strong> entries
       </div>
       <nav>
         <ul class="pagination pagination-sm mb-0">
-          <li class="page-item disabled">
-            <a class="page-link">Previous</a>
+          <li class="page-item" [class.disabled]="currentPage() === 1">
+            <a class="page-link" (click)="setPage(currentPage()-1)">Previous</a>
           </li>
-          <li class="page-item active">
-            <a class="page-link">1</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">2</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">3</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link">Next</a>
+          @for (page of [].constructor(totalPages()); track $index) {
+            <li class="page-item" [class.active]="currentPage() === ($index+1)">
+              <a class="page-link" (click)="setPage($index+1)">{{ $index+1 }}</a>
+            </li>
+          }
+          <li class="page-item" [class.disabled]="currentPage() === totalPages()">
+            <a class="page-link" (click)="setPage(currentPage()+1)">Next</a>
           </li>
         </ul>
       </nav>

@@ -1,13 +1,14 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, inject,computed } from '@angular/core';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Api } from '../../core/service/api';
+import { FormsModule } from '@angular/forms';
 declare var bootstrap: any;
 
 @Component({
   selector: 'app-fmarkets',
-  imports: [RouterModule,JsonPipe,CommonModule],
+  imports: [RouterModule,JsonPipe,CommonModule,FormsModule],
   templateUrl: './fmarkets.html',
   styleUrl: './fmarkets.css'
 })
@@ -19,6 +20,32 @@ export class FMarkets implements OnInit{
   soccerMarketBookList = signal<any[]>([]);
   isloading = false;
   eventId: any;
+
+  Math = Math;
+
+  // Pagination state
+  pageSize = signal<number>(10);
+  searchTerm = signal('');
+  currentPage = signal(1);
+
+  // Derived data using Angular Signals
+  filteredList = computed(() => {
+    const term = this.searchTerm().toLowerCase();
+    return this.soccerMarketList().filter(
+      (item) =>
+        item.marketName.toLowerCase().includes(term) ||
+        item.marketId.toLowerCase().includes(term) 
+    );
+  });
+
+  paginatedList = computed(() => {
+    const start = (this.currentPage() - 1) * this.pageSize();
+    return this.filteredList().slice(start, start + this.pageSize());
+  });
+
+  totalPages = computed(
+    () => Math.ceil(this.filteredList().length / this.pageSize()) || 1
+  );
   
   constructor() {}
 
@@ -37,6 +64,7 @@ export class FMarkets implements OnInit{
         this.soccerMarketList.set(res.markets);
         console.log(this.soccerMarketList(), 'this.soccerMarketList()');
         this.showToast('Soccer Market list fetched successfully');
+        this.currentPage.set(1);
       },
       error: (err) => {
         this.isloading = false;
@@ -46,12 +74,6 @@ export class FMarkets implements OnInit{
     });
   }
 
-  marketData: Record<string, any> = {
-    sport: "Cricket",
-    teams: ["India", "Australia"],
-    score: { India: 250, Australia: 245 },
-    status: "Live"
-  };
 
   openMarketDataModal(id: any) {
     console.log(id, 'body');
@@ -86,6 +108,26 @@ export class FMarkets implements OnInit{
       this.showToast(`Failed to copy JSON: ${err}`);
     }
   };
+
+  setPageSize(event: Event) {
+    const select = event.target as HTMLSelectElement | null;
+    if (select) {
+      this.pageSize.set(Number(select.value));
+      this.currentPage.set(1);
+    }
+  }
+
+  setPage(page: number) {
+    if (page >= 1 && page <= this.totalPages()) {
+      this.currentPage.set(page);
+    }
+  }
+
+  onSearchChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
+    this.currentPage.set(1);
+  }
 
   private showToast(message: string, isError: boolean = false): void {
     Swal.fire({
