@@ -1,12 +1,13 @@
-import { Component, OnInit, signal, inject } from '@angular/core';
+import { Component, OnInit, signal, computed, inject } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Api } from '../../core/service/api';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-tennis',
-  imports: [RouterModule,CommonModule],
+  imports: [RouterModule,CommonModule,FormsModule],
   templateUrl: './tennis.html',
   styleUrl: './tennis.css'
 })
@@ -15,6 +16,31 @@ export class Tennis implements OnInit{
   private apiService = inject(Api);
   tennisCompetitionList = signal<any[]>([]);
   isloading = false;
+
+  Math = Math; 
+
+  // Pagination state
+  pageSize = signal<number>(10);
+  searchTerm = signal('');
+  currentPage = signal(1);
+
+  // Derived data using Angular Signals
+  filteredList = computed(() => {
+    const term = this.searchTerm().toLowerCase();
+    return this.tennisCompetitionList().filter(item =>
+      item.competition.name.toLowerCase().includes(term) ||
+      item.competitionRegion?.toLowerCase().includes(term)
+    );
+  });
+
+  paginatedList = computed(() => {
+    const start = (this.currentPage() - 1) * this.pageSize();
+    return this.filteredList().slice(start, start + this.pageSize());
+  });
+
+  totalPages = computed(() => 
+    Math.ceil(this.filteredList().length / this.pageSize()) || 1
+  );
 
   constructor(){}
 
@@ -28,6 +54,7 @@ export class Tennis implements OnInit{
       next: (res:any) => {
         this.isloading = false;
         this.tennisCompetitionList.set(res?.competitions);
+        this.currentPage.set(1);
         console.log(this.tennisCompetitionList(),"this.tennisCompetitionList()");
         this.showToast("Tennis competition list fetched successfully");
       },
@@ -37,6 +64,27 @@ export class Tennis implements OnInit{
         this.showToast('Error in getting tennis competition list',true);
       }
     })
+  }
+
+  setPageSize(event: Event) {
+  const select = event.target as HTMLSelectElement | null;
+  if (select) {
+    this.pageSize.set(Number(select.value));
+    this.currentPage.set(1);
+  }
+}
+
+  setPage(page: number) {
+    if (page >= 1 && page <= this.totalPages()) {
+      this.currentPage.set(page);
+    }
+  }
+
+
+  onSearchChange(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.searchTerm.set(value);
+    this.currentPage.set(1);
   }
 
   private showToast(message: string, isError: boolean = false): void {
