@@ -28,7 +28,7 @@ export class Football implements OnInit {
     const term = this.searchTerm().toLowerCase();
     return this.soccerCompetitionList().filter(
       (item) =>
-        item.competition.name.toLowerCase().includes(term) ||
+        item.competitionName.toLowerCase().includes(term) ||
         item.competitionRegion?.toLowerCase().includes(term)
     );
   });

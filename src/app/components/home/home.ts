@@ -28,7 +28,7 @@ export class Home implements OnInit{
   filteredList = computed(() => {
     const term = this.searchTerm().toLowerCase();
     return this.cricketCompetitionList().filter(item =>
-      item.competition.name.toLowerCase().includes(term) ||
+      item.competitionName.toLowerCase().includes(term) ||
       item.competitionRegion?.toLowerCase().includes(term)
     );
   });
