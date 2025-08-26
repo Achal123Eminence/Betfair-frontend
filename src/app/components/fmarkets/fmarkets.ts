@@ -62,7 +62,6 @@ export class FMarkets implements OnInit{
       next: (res: any) => {
         this.isloading = false;
         this.soccerMarketList.set(res.markets);
-        console.log(this.soccerMarketList(), 'this.soccerMarketList()');
         this.showToast('Soccer Market list fetched successfully');
         this.currentPage.set(1);
       },
@@ -76,14 +75,12 @@ export class FMarkets implements OnInit{
 
 
   openMarketDataModal(id: any) {
-    console.log(id, 'body');
     if(id){
       this.isloading = true
       this.apiService.getMarketBook(id).subscribe({
         next:(res:any) => {
           this.isloading = false;
           this.soccerMarketBookList.set(res.marketBook[0]);
-          console.log(this.soccerMarketBookList(), 'this.soccerMarketBookList()');
           const modal = document.getElementById('marketDataModal');
           if (modal) new bootstrap.Modal(modal).show();
           this.showToast('Cricket Market Book Data fetched successfully');

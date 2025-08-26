@@ -63,7 +63,6 @@ export class TMarkets implements OnInit{
       next: (res: any) => {
         this.isloading = false;
         this.tennisMarketList.set(res.markets);
-        console.log(this.tennisMarketList(), 'this.tennisMarketList()');
         this.showToast('Cricket Market list fetched successfully');
         this.currentPage.set(1);
       },
@@ -76,14 +75,12 @@ export class TMarkets implements OnInit{
   }
   
   openMarketDataModal(id: any) {
-    console.log(id, 'body');
     if(id){
       this.isloading = true;
       this.apiService.getMarketBook(id).subscribe({
         next:(res:any) => {
           this.isloading = false;
           this.tennisMarketBookList.set(res.marketBook[0]);
-          console.log(this.tennisMarketBookList(), 'this.tennisMarketBookList()');
           const modal = document.getElementById('marketDataModal');
           if (modal) new bootstrap.Modal(modal).show();
           this.showToast('Tennis Market Book Data fetched successfully');

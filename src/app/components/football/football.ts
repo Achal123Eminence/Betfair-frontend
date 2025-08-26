@@ -55,10 +55,6 @@ export class Football implements OnInit {
         this.isloading = false;
         this.soccerCompetitionList.set(res?.competitions);
         this.currentPage.set(1);
-        console.log(
-          this.soccerCompetitionList(),
-          'this.soccerCompetitionList()'
-        );
         this.showToast('Soccer competition list fetched successfully');
       },
       error: (err) => {

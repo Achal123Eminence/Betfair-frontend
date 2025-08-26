@@ -55,7 +55,6 @@ export class Home implements OnInit{
         this.isloading = false;
         this.cricketCompetitionList.set(res?.competitions || []);
         this.currentPage.set(1);
-        console.log(this.cricketCompetitionList(),"this.cricketCompetitionList()");
         this.showToast("Cricket competition list fetched successfully");
       },
       error: (err) =>{

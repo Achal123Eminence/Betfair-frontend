@@ -52,7 +52,6 @@ export class TennisEventsList implements OnInit {
       next: (res: any) => {
         this.isloading = false;
         this.tennisAllEventList.set(res.events);
-        console.log(this.tennisAllEventList(), 'this.tennisAllEventList()');
         this.showToast('Tennis All Event list fetched successfully');
         this.currentPage.set(1);
       },

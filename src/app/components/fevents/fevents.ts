@@ -30,7 +30,7 @@ export class FEvents implements OnInit {
     const term = this.searchTerm().toLowerCase();
     return this.soccerEventList().filter(
       (item) =>
-        item.event.name.toLowerCase().includes(term)
+        item.event_name.toLowerCase().includes(term)
     );
   });
 
@@ -58,7 +58,6 @@ export class FEvents implements OnInit {
       next: (res: any) => {
         this.isloading = false;
         this.soccerEventList.set(res.events);
-        console.log(this.soccerEventList(), 'this.soccerEventList()');
         this.showToast('Soccer Event list fetched successfully');
         this.currentPage.set(1);
       },

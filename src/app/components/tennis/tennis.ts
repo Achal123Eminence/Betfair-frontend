@@ -55,7 +55,6 @@ export class Tennis implements OnInit{
         this.isloading = false;
         this.tennisCompetitionList.set(res?.competitions);
         this.currentPage.set(1);
-        console.log(this.tennisCompetitionList(),"this.tennisCompetitionList()");
         this.showToast("Tennis competition list fetched successfully");
       },
       error: (err) =>{

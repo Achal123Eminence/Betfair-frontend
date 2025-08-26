@@ -61,7 +61,6 @@ export class Cmarkets implements OnInit{
       next: (res: any) => {
         this.isloading = false;
         this.cricketMarketList.set(res.markets);
-        console.log(this.cricketMarketList(), 'this.cricketMarketList()');
         this.showToast('Cricket Market list fetched successfully');
         this.currentPage.set(1);
       },
@@ -74,14 +73,12 @@ export class Cmarkets implements OnInit{
   }
 
   openMarketDataModal(id: any) {
-    console.log(id, 'body');
     if(id){
       this.isloading = true;
       this.apiService.getMarketBook(id).subscribe({
         next:(res:any) => {
           this.isloading =false;
           this.cricketMarketBookList.set(res.marketBook[0]);
-          console.log(this.cricketMarketBookList(), 'this.cricketMarketBookList()');
           const modal = document.getElementById('marketDataModal');
           if (modal) new bootstrap.Modal(modal).show();
           this.showToast('Cricket Market Book Data fetched successfully');

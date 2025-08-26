@@ -30,7 +30,7 @@ export class CEvent implements OnInit{
     const term = this.searchTerm().toLowerCase();
     return this.cricketEventList().filter(
       (item) =>
-        item.event.name.toLowerCase().includes(term)
+        item.event_name.toLowerCase().includes(term)
     );
   });
 
@@ -59,10 +59,6 @@ export class CEvent implements OnInit{
       next: (res: any) => {
         this.isloading = false
         this.cricketEventList.set(res.events);
-        console.log(
-          this.cricketEventList(),
-          'this.cricketEventList()'
-        );
         this.showToast('Cricket Event list fetched successfully');
         this.currentPage.set(1);
       },

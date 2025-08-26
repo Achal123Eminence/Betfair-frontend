@@ -44,14 +44,14 @@
         @for (item of paginatedList(); track $index) {
           <tr>
             <th scope="row">{{ ($index + 1) + ((currentPage()-1) * pageSize()) }}</th>
-            <td>{{item.event.id}}/{{item.marketId}}</td>
-            <td>{{item.event.name}}</td>
-            <td>{{item.competitionId}}/{{item.competitionName}}</td>
-            <td>{{item.event.openDate}}</td>
+            <td>{{item.event_id}}/{{item.market_id}}</td>
+            <td>{{item.event_name}}</td>
+            <td>{{item.competition_id}}/{{item.competition_name}}</td>
+            <td>{{item.open_date}}</td>
             <td>Tennis</td>
-            <td>{{item.marketCount}}</td>
+            <td>{{item.market_count}}</td>
             <td>
-              <button class="events-btn" routerLink="/t-market/{{item.event.id}}">Markets</button>
+              <button class="events-btn" routerLink="/t-market/{{item.event_id}}">Markets</button>
             </td>
           </tr>
         }

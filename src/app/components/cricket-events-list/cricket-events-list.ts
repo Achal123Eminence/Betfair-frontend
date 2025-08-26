@@ -54,7 +54,6 @@ export class CricketEventsList implements OnInit {
       next: (res: any) => {
         this.isloading = false;
         this.cricketAllEventList.set(res.events);
-        console.log(this.cricketAllEventList(), 'this.cricketAllEventList()');
         this.showToast('Cricket All Event list fetched successfully');
         this.currentPage.set(1);
       },
